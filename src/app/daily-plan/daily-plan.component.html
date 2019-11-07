@@ -1,1 +1,19 @@
-<p>daily-plan works!</p>
+<mat-toolbar color="primary" class="d-flex mat-elevation-z6">
+    <mat-toolbar-row class="justify-content-between" >
+        <span>Third Line</span>
+        <span class="example-spacer"></span>
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+      </mat-toolbar-row>
+</mat-toolbar>
+ <p>ciao </p>
+ <mat-form-field>
+    <input matInput [matDatepicker]="picker1" placeholder="Angular forms" [formControl]="currentDate">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+
+ <router-outlet></router-outlet>
+
+
+

@@ -26,7 +26,95 @@ $daily-plan-theme: mat-light-theme($daily-plan-primary, $daily-plan-accent, $dai
 // that you are using.
 @include angular-material-theme($daily-plan-theme);
 
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$daily-plan-primary: mat-palette($mat-indigo);
+$daily-plan-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$daily-plan-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$daily-plan-theme: mat-light-theme($daily-plan-primary, $daily-plan-accent, $daily-plan-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($daily-plan-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+
+
+/* You can add global styles to this file, and also import other style files */
+$link-color: #673ab7;
+$link-hover-color: currentColor;
+$link-hover-decoration: none;
+$laber-margin-bottom: 0;
+$grid-breakpoints: ( /* ci personalizza le griglie di bootstrap */
+  xs: 0,
+  sm: 600px,
+  md: 960px,
+  lg: 1280,
+  xl: 1600px
+);
+// personalizziamo il container
+$container-max-widths:(
+  sm: 600px,
+  md: 960px,
+  lg: 1280px,
+  xl: 1600px
+);
+// IMPORTIAMO
+// ~ -> prende da nodemodules
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/utilities';
+@import '~bootstrap/scss/alert';
+
+
+// * qualunque tag che ha come super classe active
+* {
+    &:active,
+    :focus{
+      outline: none !important;
+    }
+}
+// è UNA PSEUDO CLASSE SERVE AD INDICARE QUANDO IL LINK NON E' CLICCATO
+// voglio impostare link color a tutti gli A ma non su quello che c 'è dopo not..( che sono pulsanti ecc)
+a:not(.mat-button):not(.mat-raised-button):not(.mat-fab):not(.mat-mini-fab):not([max-list-items]){
+  color: $link-color;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// verde per colori positivi, rossi per negativi
+.positive {
+  color: green,
+}
+.negative {
+  color: red,
+}
+
+// personalizziamo hr
+hr.primary {
+  border: 1px solid $link-color;
+}
+
+.mat-list-base .mat-list-item {
+  color:black;
+}
