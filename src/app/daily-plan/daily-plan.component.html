@@ -1,19 +1,24 @@
-<mat-toolbar color="primary" class="d-flex mat-elevation-z6">
-    <mat-toolbar-row class="justify-content-between" >
-        <span>Third Line</span>
+<mat-toolbar color="primary" class="d-flex mat-elevation-z6 float-right">
+    <mat-toolbar-row>
+        <span>Daily Plan</span>
         <span class="example-spacer"></span>
+        <button mat-button="Home" routerLink="/plan" routerLinkActive="router-link-active">
+          Home
+        </button>
+        <button mat-button="aboveMenu" routerLink="/plan/:id" routerLinkActive="router-link-active">
+          Esegui
+        </button>
         <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
         <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
-      </mat-toolbar-row>
+    </mat-toolbar-row>
 </mat-toolbar>
+
  <p>ciao </p>
- <mat-form-field>
+
+ <!-- <mat-form-field>
     <input matInput [matDatepicker]="picker1" placeholder="Angular forms" [formControl]="currentDate">
     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
     <mat-datepicker #picker1></mat-datepicker>
-</mat-form-field>
+</mat-form-field> -->
 
  <router-outlet></router-outlet>
-
-
-
