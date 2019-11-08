@@ -1,17 +1,21 @@
 <!-- mat-menu -->
 
 <mat-toolbar>
+    <mat-list-item *ngFor="let plan of plans">
   <mat-toolbar-row>
+
     <span>Third Line</span>
     <span class="example-spacer"></span>
 
     <!-- mat-icon / esegui -->
 
-  <button mat-icon-button aria-label="Esegui attivitÃ " matTooltip="Esegui attivitÃ ">
+  <button mat-icon-button aria-label="Esegui attivitÃ " matTooltip="Esegui attivitÃ "
+    [routerLink]="'/plan/' + plan._id" routerLinkActive="router-link-active" >
       <mat-icon>
           play_circle_filled
       </mat-icon>
     </button>
+
 
     <!-- mat-icon / create ------>
 
@@ -27,7 +31,9 @@
       </mat-icon>
     </button>
 
-  </mat-toolbar-row>
+
+</mat-toolbar-row>
+</mat-list-item>
 </mat-toolbar>
 
 <!-- calendar-wrapper -->
