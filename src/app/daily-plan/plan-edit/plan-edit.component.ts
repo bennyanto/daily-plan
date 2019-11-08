@@ -28,8 +28,6 @@ export class PlanEditComponent implements OnInit, OnDestroy {
 
   trueID: String = this.currentDate.toString(); // id del piano gironalieor
 
-
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
