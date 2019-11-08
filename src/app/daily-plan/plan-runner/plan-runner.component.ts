@@ -1,8 +1,10 @@
 import { MatSnackBar } from '@angular/material';
 import { Plan } from './../models/plan';
 import { PouchdbService } from './../services/pouchdb.service';
-import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-plan-runner',
@@ -11,19 +13,67 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanRunnerComponent implements OnInit {
   isRunning: boolean;
+
+  intervallID: null;
   plan: Plan;
-  hasFinished: boolean;
+  private routeSub: Subscription;
 
 
 
   constructor(
     private route: ActivatedRoute,
     private db: PouchdbService,
-    private snackBar: MatSnackBar)
+    private snackbar: MatSnackBar)
     {}
 
-  ngOnInit() {
+ngOnInit() {
+      this.routeSub = this.route.params.subscribe((
+        params: Params) => {
+          this.db
+          .getPlan(params.id)
+          .then(plan => {
+            this.plan = plan;
+
+          })
+          .catch(error =>  {
+            console.log(error);
+            this.snackbar.open('erorr nel car dei dati', 'eroor', {
+              duration: 2000
+            });
+          });
+
+        });
+}
+
+
+ngOnDestroy() {
+this.routeSub.unsubscribe();
+}
+runTask() {
+
+}
+play() {
+  this.runTask();
+  this.isRunning = true;
+}
+
+pause() {
+
+}
+
+stop() {
+
+}
+
+togglePlayStop() {
+  if(this.isRunning) {
+    this.pause();
+  } else {
+    this.play();
   }
+}
+
+uncheckTask() {
 
 }
 
@@ -44,4 +94,4 @@ export class PlanRunnerComponent implements OnInit {
 
 //    prevStep() {
 //        this.step--;
-//    }
+//
