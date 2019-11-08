@@ -21,12 +21,12 @@ export class PlanEditComponent implements OnInit, OnDestroy {
   private routeSub: Subscription;
   form: FormGroup;
   currentDate = new Date(); // odierna
-  private plan: Plan = new Plan('piano1');
+
 
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
 
-  trueID: String = this.currentDate.toString(); // id del piano gironalieor
+  trueID: string = this.currentDate.toString(); // id del piano gironalieor
 
   constructor(
     private route: ActivatedRoute,
@@ -45,14 +45,13 @@ export class PlanEditComponent implements OnInit, OnDestroy {
   }
 
   init() {
-   if (this.routeSub) { //comm
+   if (this.routeSub) { // comm
      this.routeSub.unsubscribe();
    }
    this.routeSub = this.route.params.subscribe((params: Params) => { // controlliamo dal db
-      if(params.id == 0) {
+      if (params.id == 0) {
         this.createForm(new Plan());
-      }
-        else if (params.id == this.currentDate) {
+      } else if (params.id == this.currentDate) {
         this.db.getPlan(params.id).then((plan: Plan) => {
           this.createForm(plan);
         });
@@ -81,14 +80,14 @@ export class PlanEditComponent implements OnInit, OnDestroy {
   // manca comment
   createForm(plan: Plan) {
     const tasks = plan.tasks.map(task => this.buildGroup(task));
-    this.form = this.formBuilder.group({ //crea form //crea gruppo con qst prorp
+    this.form = this.formBuilder.group({ // crea form //crea gruppo con qst prorp
       _id: this.trueID, // genra id al giorno di oggi
       _rev: [plan._rev],
       tasks: this.formBuilder.array(tasks) // tuttitasks
 
     });
   }
-  get Task() {
+  get tasks() {
     return this.form.get('tasks') as FormArray;
   }
   addTask() {
@@ -114,7 +113,7 @@ export class PlanEditComponent implements OnInit, OnDestroy {
 
       this.init(); // controlare
 
-      if(!this.form.value.id) {
+      if (!this.form.value.id) {
         this.form.value._id = response.id;
         this.router.navigate([`/plan/edit/${response.id}`]); // contrllare
       }

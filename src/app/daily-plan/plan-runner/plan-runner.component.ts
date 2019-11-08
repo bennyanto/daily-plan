@@ -1,3 +1,7 @@
+import { MatSnackBar } from '@angular/material';
+import { Plan } from './../models/plan';
+import { PouchdbService } from './../services/pouchdb.service';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +10,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./plan-runner.component.scss']
 })
 export class PlanRunnerComponent implements OnInit {
+  isRunning: boolean;
+  plan: Plan;
+  hasFinished: boolean;
 
-  constructor() {}
+
+
+  constructor(
+    private route: ActivatedRoute,
+    private db: PouchdbService,
+    private snackBar: MatSnackBar)
+    {}
 
   ngOnInit() {
   }

@@ -1,6 +1,21 @@
-<div class="calendar-wrapper">
+<!-- <div class="calendar-wrapper">
   <mat-calendar #calendar [(selected)]="selectedDate">
   </mat-calendar>
-</div>
+</div> -->
 
-<!-- <router-outlet></router-outlet> -->
+
+<!--
+<mat-toolbar color='primary' class="d-flex mat-elevation-z6">
+    <mat-toolbar-row class="justify-content-between">
+      <span>Daily-plan</span>
+      <span></span>
+      <div>
+        <button routerLink="/piani" routerLinkActive="router-link-active" mat-icon-button aria-label="Lista">
+          <mat-icon>view_list</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar-row>
+</mat-toolbar> -->
+<app-navbar></app-navbar>
+<p>ciao</p>
+<router-outlet></router-outlet>
