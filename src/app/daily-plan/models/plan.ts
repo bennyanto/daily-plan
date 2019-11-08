@@ -4,7 +4,7 @@ export class Plan {
   _rev: string; // serve per contrllo couch db
 
   constructor(
-    public title: string = '', //
+
     public tasks: Task[] = [new Task()] // array di tasks
   ) {}
 }
