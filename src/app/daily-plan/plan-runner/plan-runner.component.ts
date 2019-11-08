@@ -13,9 +13,10 @@ import { Subscription } from 'rxjs';
 })
 export class PlanRunnerComponent implements OnInit {
   isRunning: boolean;
-
-  intervallID: null;
+  currentTaskIndex = 0; // indice del task partito dal tasto play
+  intervalID; // ogni secondo incrementa il tempo (tempotrascorso ) di 1
   plan: Plan;
+  checked= false;
   private routeSub: Subscription;
 
 
@@ -23,77 +24,75 @@ export class PlanRunnerComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private db: PouchdbService,
-    private snackbar: MatSnackBar)
-    {}
+    private snackbar: MatSnackBar) { }
 
-ngOnInit() {
-      this.routeSub = this.route.params.subscribe((
-        params: Params) => {
-          this.db
-          .getPlan(params.id)
-          .then(plan => {
-            this.plan = plan;
+  ngOnInit() {
+    this.routeSub = this.route.params.subscribe((
+      params: Params) => {
+      this.db
+        .getPlan(params.id) // prendiamo piano dal db e guarda html con for per mostrare plan
+        .then(plan => {
+          this.plan = plan;
 
-          })
-          .catch(error =>  {
-            console.log(error);
-            this.snackbar.open('erorr nel car dei dati', 'eroor', {
-              duration: 2000
-            });
+        })
+        .catch(error => {
+          console.log(error);
+          this.snackbar.open('erorr nel car dei dati', 'eroor', {
+            duration: 2000
           });
-
         });
-}
 
-
-ngOnDestroy() {
-this.routeSub.unsubscribe();
-}
-runTask() {
-
-}
-play() {
-  this.runTask();
-  this.isRunning = true;
-}
-
-pause() {
-
-}
-
-stop() {
-
-}
-
-togglePlayStop() {
-  if(this.isRunning) {
-    this.pause();
-  } else {
-    this.play();
+    });
   }
-}
+  //init() {
+   // this.intervalID = null;
+ // }
 
-uncheckTask() {
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
+  }
 
-}
+  runTask() {
+    const task = this.plan.tasks[this.currentTaskIndex]; //currentTaskIndex è a 0
+    this.intervalID = setInterval(() => {
+      task.tempotrascorso++;
+      console.log(task.tempotrascorso);
 
-// checked = false;
-// indeterminate = false;
-// labelPosition = 'after';
-// disabled = false;
+    }, 1000);
+  }
 
-//  step = 0;
+  play() {
+    this.runTask();
+    this.isRunning = true;
+  }
 
-//  setStep(index: number) {
-//        this.step = index;
-//    }
+  pause() {
+    clearInterval(this.intervalID);
+    this.isRunning = false;
+  }
 
-//    nextStep() {
-//        this.step++;
-//    }
+  stop() {
+    this.pause();
 
-//    prevStep() {
-//        this.step--;
-//
+  }
+  // ccione iniziale per iniziare
+  togglePlayStop() {
+    if (this.isRunning) { // se è gia partito / pausa
+      this.pause();
+    } else {
+      this.play();
+    }
+  }
+
+  check() {
+    const task = this.plan.tasks[this.currentTaskIndex];
+    if(this.checked) { // checked prop [ng module], quando check il checked va a true con bana
+      task.isDone = true;
+      this.currentTaskIndex++;
+      this.runTask();
+
+    }
+  }
+
 
 }
