@@ -1,14 +1,147 @@
-<mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Self aware panel
-      </mat-panel-title>
-      <mat-panel-description>
-        Currently I am {{ panelOpenState ? 'open' : 'closed'}}
-        <mat-icon>account_circle</mat-icon>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
-  </mat-expansion-panel>
+<mat-accordion class="daily-plan-runner-container">
+
+    <!-- mat-expansion-panel 0 -->
+
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+
+        <mat-expansion-panel-header>
+
+            <!-- mat-checkbox -->
+
+            <!-- <mat-checkbox [(ngModel)]="indeterminate"></mat-checkbox> -->
+
+            <!-- mat-panel-title -->
+
+            <mat-panel-title>
+                <mat-icon class="date_range">
+                    date_range
+                </mat-icon>
+                Date
+            </mat-panel-title>
+
+            <!-- mat-panel-description -->
+
+            <mat-panel-description>
+                Description
+                <mat-icon>
+                    delete_forever
+                </mat-icon>
+                <mat-icon>
+                    edit
+                </mat-icon>
+            </mat-panel-description>
+
+        </mat-expansion-panel-header>
+
+        <!-- mat-expansion-panel content -->
+
+        <p>I'm visible because I am open</p>
+
+        <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+                Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">
+                Next
+            </button>
+        </mat-action-row>
+
+    </mat-expansion-panel>
+
+    <!-- mat-expansion-panel 1 -->
+
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+
+        <mat-expansion-panel-header>
+
+            <!-- mat-checkbox -->
+
+            <!-- <mat-checkbox [(ngModel)]="indeterminate"></mat-checkbox> -->
+
+            <!-- mat-panel-title -->
+
+            <mat-panel-title>
+                <mat-icon class="date_range">
+                    date_range
+                </mat-icon>
+                Date
+            </mat-panel-title>
+
+            <!-- mat-panel-description -->
+
+            <mat-panel-description>
+                Description_2
+                <mat-icon>
+                    delete_forever
+                </mat-icon>
+                <mat-icon>
+                    edit
+                </mat-icon>
+            </mat-panel-description>
+
+        </mat-expansion-panel-header>
+
+        <!-- mat-expansion-panel content -->
+
+        <p>I'm visible because I am open</p>
+
+        <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+                Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">
+                Next
+            </button>
+        </mat-action-row>
+
+    </mat-expansion-panel>
+
+    <!-- mat-expansion-panel 2 -->
+
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+
+        <mat-expansion-panel-header>
+
+            <!-- mat-checkbox -->
+
+            <!-- <mat-checkbox [(ngModel)]="indeterminate"></mat-checkbox> -->
+
+            <!-- mat-panel-title -->
+
+            <mat-panel-title>
+                <mat-icon class="date_range">
+                    date_range
+                </mat-icon>
+                Date_3
+            </mat-panel-title>
+
+            <!-- mat-panel-description -->
+
+            <mat-panel-description>
+                Description_3
+                <mat-icon>
+                    delete_forever
+                </mat-icon>
+                <mat-icon>
+                    edit
+                </mat-icon>
+            </mat-panel-description>
+
+        </mat-expansion-panel-header>
+
+        <!-- mat-expansion-panel content -->
+
+        <p>I'm visible because I am open</p>
+
+        <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+                Previous
+            </button>
+            <button mat-button color='primary' (click)="nextStep()">
+                Next
+            </button>
+        </mat-action-row>
+
+    </mat-expansion-panel>
+
 </mat-accordion>

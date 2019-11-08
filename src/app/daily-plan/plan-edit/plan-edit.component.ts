@@ -20,9 +20,13 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@ang
 export class PlanEditComponent implements OnInit, OnDestroy {
   private routeSub: Subscription;
   form: FormGroup;
-  currentDate = new FormControl(new Date());
-  serializedDate = new FormControl((new Date()).toISOString());
+  currentDate = new Date(); // odierna
   private plan: Plan = new Plan('piano1');
+
+  date = new FormControl(new Date());
+  serializedDate = new FormControl((new Date()).toISOString());
+
+  trueID: String = this.currentDate.toString(); // id del piano gironalieor
 
 
 
@@ -43,20 +47,31 @@ export class PlanEditComponent implements OnInit, OnDestroy {
   }
 
   init() {
+   if (this.routeSub) { //comm
+     this.routeSub.unsubscribe();
+   }
+   this.routeSub = this.route.params.subscribe((params: Params) => { // controlliamo dal db
+      if(params.id == 0) {
+        this.createForm(new Plan());
+      }
+        else if (params.id == this.currentDate) {
+        this.db.getPlan(params.id).then((plan: Plan) => {
+          this.createForm(plan);
+        });
+      } else if (this.currentDate.getTime() < new Date(this.date.toString()).getTime()) { // deu ogg data //coonto secodni
 
-    console.log(this.plan);
+        this.trueID = this.date.toString();
+        this.createForm(new Plan());
+
+      } else if (this.currentDate.getTime() > new Date(this.date.toString()).getTime()) {
+        // deu ogg data //coonto secodni
+         this.snackbar.open('non inserire un piano con data precedente ad aoggi', null,  {duration: 2000});
+      }
+
+
+   });
   }
 
-  addTask() {
-    this.tasks.push(this.buildGroup());
-  }
-
-  fetchData() {
-
-  }
-  createForm(plan: Plan) {
-    const tasks = plan.tasks.map(task => this.buildGroup(task));
-  }
 
   buildGroup(task: Task = new Task()) {
     return this.formBuilder.group({
@@ -65,6 +80,23 @@ export class PlanEditComponent implements OnInit, OnDestroy {
       tempotrascorso: [task.tempotrascorso || 0]
     });
   }
+  // manca comment
+  createForm(plan: Plan) {
+    const tasks = plan.tasks.map(task => this.buildGroup(task));
+    this.form = this.formBuilder.group({ //crea form //crea gruppo con qst prorp
+      _id: this.trueID, // genra id al giorno di oggi
+      _rev: [plan._rev],
+      tasks: this.formBuilder.array(tasks) // tuttitasks
+
+    });
+  }
+  get Task() {
+    return this.form.get('tasks') as FormArray;
+  }
+  addTask() {
+    this.tasks.push(this.buildGroup());
+  }
+
 
   insertTask(index: number) {
     this.tasks.insert(index, this.buildGroup());
