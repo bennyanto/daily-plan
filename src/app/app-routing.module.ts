@@ -6,8 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: 'plan', component: DailyPlanComponent}, // dailyplancompoentn è la home
-  { path: 'plan/edit:id', component: PlanEditComponent},
+ // { path: 'plan', component: DailyPlanComponent}, // dailyplancompoentn è la home
+  { path: 'plan/edit/:id', component: PlanEditComponent},
   { path: 'plan/:id', component: PlanRunnerComponent },
   { path: '', redirectTo: '/plan', pathMatch: 'full'} // ritorna alla homr
 ];
