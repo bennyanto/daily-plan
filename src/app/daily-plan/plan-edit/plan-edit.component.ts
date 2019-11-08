@@ -20,9 +20,14 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@ang
 export class PlanEditComponent implements OnInit, OnDestroy {
   private routeSub: Subscription;
   form: FormGroup;
+<<<<<<< Updated upstream
   currentDate = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
   private plan: Plan = new Plan('piano1');
+=======
+  currentDate = new Date(); // odierna
+  private plan: Plan = new Plan();
+>>>>>>> Stashed changes
 
 
 
@@ -65,6 +70,26 @@ export class PlanEditComponent implements OnInit, OnDestroy {
       tempotrascorso: [task.tempotrascorso || 0]
     });
   }
+<<<<<<< Updated upstream
+=======
+  // manca comment
+  createForm(plan: Plan) {
+    const tasks = plan.tasks.map(task => this.buildGroup(task));
+    this.form = this.formBuilder.group({ //crea form //crea gruppo con qst prorp
+      _id: this.trueID, // genra id al giorno di oggi
+      _rev: [plan._rev],
+      tasks: this.formBuilder.array(tasks) // tuttitasks
+
+    });
+  }
+  get tasks() {
+    return this.form.get('tasks') as FormArray;
+  }
+  addTask() {
+    this.tasks.push(this.buildGroup());
+  }
+
+>>>>>>> Stashed changes
 
   insertTask(index: number) {
     this.tasks.insert(index, this.buildGroup());

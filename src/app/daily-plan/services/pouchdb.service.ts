@@ -1,7 +1,8 @@
 import { PlanQL } from './../models/plan-ql';
 import { Plan } from './../models/plan';
 import { Injectable } from '@angular/core';
-import PouchDB from 'pouchdb';
+import { PouchDB } from 'pouchdb'
+
 /////////////////////// FINITO
 
 @Injectable({

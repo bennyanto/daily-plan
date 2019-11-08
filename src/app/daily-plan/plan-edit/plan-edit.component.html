@@ -1,3 +1,69 @@
+<<<<<<< Updated upstream
 <mat-form-field>
   <textarea matInput placeholder="Textarea"></textarea>
 </mat-form-field>
+=======
+<div class="daily-plan-edit-container">
+    <ng-template [ngIf]="form">
+        <form [formGroup]="form" (ngSubmit)="submitForm()">
+            <div class="row my-3">
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Scegliere una data" [formControl]="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <!-- ok -->
+            <div formArrayName="tasks">
+                <mat-accordion>
+                    <mat-expansion-panel *ngFor=" let task of task.controls; let i = index" [formGroupName]="i" ]>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                #{{i}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                {{task.controls.title.value}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div class="row my-3">
+                            <mat-form-field class="col" hintLabel="Massimo 100 caratteri">
+                                <input [formControl]="" matInput #title maxlength="100" placeholder="Titolo" required>
+                                <mat-hint align="end">{{title.value?.length || 0}}/100</mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <mat-action-row>
+                            <button type="button" mat-icon-button aria-label="Inserire attività" matTooltip="Inserire attività" color="primary" (click)="insertTask(i)">
+                              <mat-icon>
+                              add_circle
+                              </mat-icon>
+                            </button>
+                            <button type="button" mat-icon-button aria-label="Rimuovere attività" matTooltip="Rimuovere attività" color="primary" (click)="removeTask(i)">
+            <mat-icon>
+              delete_forever
+            </mat-icon>
+          </button>
+
+                        </mat-action-row>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+
+
+
+            <div class="row mt-3">
+                <div class="col text-center">
+                    <button type="button" mat-mini-fab aria-label="Aggiungi un'attività" matTooltip="Aggiungi un'attività" color="primary" (click)="addTask()">
+                  <mat-icon>
+                    add
+                  </mat-icon>
+                </button>
+                </div>
+            </div>
+            <button type="submit" mat-fab aria-label="salva" matTooltip="salva il piano" [disabled]="!form.valid">
+            <mat-icon>save</mat-icon>
+          </button>
+        </form>
+
+    </ng-template>
+</div>
+>>>>>>> Stashed changes
