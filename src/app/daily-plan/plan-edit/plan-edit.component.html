@@ -1,14 +1,8 @@
 <div class="daily-plan-edit-container">
-  <!-- mat-form-field-datepicker -->
-
-
-
-    <!-- ng-template form -->
-
-    <ng-template [ngIf]="form">
+     <ng-template [ngIf]="form">
       <form [formGroup]="form" (ngSubmit)="submitForm()">
 
-        <!-- mat-form-field-datepicker -->
+
       <div class="row my-3">
         <mat-form-field>
           <input matInput [matDatepicker]="picker" placeholder="Scegliere una data" [formControl] ="date">
@@ -17,13 +11,7 @@
         </mat-form-field>
       </div>
 
-        <!-- <div class="row my-3">
-          <mat-form-field>
-            <textarea formControlName="" matInput placeholder="Descrizione"></textarea>
-          </mat-form-field>
-        </div> -->
 
-        <!-- mat-action-row -->
       <div formArrayName= "tasks">
         <mat-accordion>
 
@@ -64,19 +52,7 @@
       </mat-expansion-panel>
     </mat-accordion>
 
-        <!-- mat-form-field-select -->
 
-        <!-- <div class="row my-3">
-          <mat-form-field>
-            <mat-select placeholder="Select">
-              <mat-option value="option">
-                Option
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div> -->
-
-            <!-- button add -->
 
             <div class="row mt-3">
               <div class="col text-center">
