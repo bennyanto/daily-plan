@@ -1,35 +1,6 @@
-<mat-toolbar color="primary" class="d-flex mat-elevation-z6">
-  <mat-toolbar-row class="justify-content-between">
-        <span>Daily Plan</span>
-        <span class="example-spacer"></span>
-        <div>
-        <button mat-button="Home" routerLink="/plan" routerLinkActive="router-link-active">
-          Home
-        </button>
-        <button mat-button="aboveMenu" routerLink="/plan/:id" routerLinkActive="router-link-active">
-          Esegui
-        </button>
-        <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">
-          delete
-        </mat-icon>
-        <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">
-          date_range
-        </mat-icon>
-        <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">
-            account_circle
-          </mat-icon>
-        </div>
-    </mat-toolbar-row>
-</mat-toolbar>
-
- <div class="calendar-wrapper">
-    <mat-calendar #calendar [(selected)]="selectedDate">
-    </mat-calendar>
+<div class="calendar-wrapper">
+  <mat-calendar #calendar [(selected)]="selectedDate">
+  </mat-calendar>
 </div>
 
- <!-- <mat-form-field>
-    <input matInput [matDatepicker]="picker1" placeholder="Angular forms" [formControl]="currentDate">
-    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-    <mat-datepicker #picker1></mat-datepicker>
-
-</mat-form-field> -->
+<!-- <router-outlet></router-outlet> -->

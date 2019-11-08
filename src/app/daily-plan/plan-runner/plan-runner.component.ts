@@ -7,9 +7,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanRunnerComponent implements OnInit {
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }
 
 }
+
+// checked = false;
+// indeterminate = false;
+// labelPosition = 'after';
+// disabled = false;
+
+//  step = 0;
+
+//  setStep(index: number) {
+//        this.step = index;
+//    }
+
+//    nextStep() {
+//        this.step++;
+//    }
+
+//    prevStep() {
+//        this.step--;
+//    }
