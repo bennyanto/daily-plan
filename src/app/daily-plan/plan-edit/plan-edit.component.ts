@@ -56,13 +56,12 @@ export class PlanEditComponent implements OnInit, OnDestroy {
           this.createForm(plan);
         });
       } else if (this.currentDate.getTime() < new Date(this.date.toString()).getTime()) { // deu ogg data //coonto secodni
-
         this.trueID = this.date.toString();
         this.createForm(new Plan());
 
       } else if (this.currentDate.getTime() > new Date(this.date.toString()).getTime()) {
         // deu ogg data //coonto secodni
-         this.snackbar.open('non inserire un piano con data precedente ad aoggi', null,  {duration: 2000});
+         this.snackbar.open('non inserire un piano con data precedente ad oggi', null,  {duration: 2000});
       }
 
 

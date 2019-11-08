@@ -14,10 +14,11 @@ import {
   MatButtonModule, MatIconModule, MatListModule,
   MatSnackBarModule, MatExpansionModule, MatTooltipModule, MatNativeDateModule, MatMenuModule
 } from '@angular/material';
+import { PlanListComponent } from './plan-list/plan-list.component';
 
 
 @NgModule({
-  declarations: [PlanEditComponent, PlanRunnerComponent, FooterComponent, NavbarComponent, DailyPlanComponent],
+  declarations: [PlanEditComponent, PlanRunnerComponent, FooterComponent, NavbarComponent, DailyPlanComponent, PlanListComponent],
   imports: [
     CommonModule,
     MatDatepickerModule,

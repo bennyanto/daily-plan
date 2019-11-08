@@ -1,0 +1,50 @@
+<!-- mat-menu -->
+
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>Third Line</span>
+    <span class="example-spacer"></span>
+
+    <!-- mat-icon / esegui -->
+
+  <button mat-icon-button aria-label="Esegui attivitÃ " matTooltip="Esegui attivitÃ ">
+      <mat-icon>
+          play_circle_filled
+      </mat-icon>
+    </button>
+
+    <!-- mat-icon / create ------>
+
+    <button mat-icon-button aria-label="Crea attivitÃ " matTooltip="Crea attivitÃ ">
+      <mat-icon routerLink="/plan/edit:id" routerLinkActive="router-link-active">
+        create
+      </mat-icon>
+    </button>
+
+    <button mat-icon-button aria-label="Elimina attivitÃ " matTooltip="Elimina attivitÃ ">
+      <mat-icon>
+        delete_forever
+      </mat-icon>
+    </button>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- calendar-wrapper -->
+
+<div class="calendar-wrapper">
+  <mat-calendar #calendar [(selected)]="selectedDate"></mat-calendar>
+</div>
+
+<!-- mat-icon-add -->
+
+<button type="button" class="add-activity-button" mat-fab aria-label="Aggiungi un'attivitÃ " matTooltip="Aggiungi un'attivitÃ " color="primary" routerLink="/plan/edit/0" >
+       <mat-icon>
+          add
+        </mat-icon>
+      </button>
+
+<!-- tasks -->
+
+<div></div>
+
