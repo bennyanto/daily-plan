@@ -40,9 +40,7 @@
             display: flex;
             flex-direction: column;
             width: 100%;
-            mat-list-item .d-flex.mat-list-item {
-                justify-content: space-between;
-            }
+            justify-content: center;
         }
     }
 }
