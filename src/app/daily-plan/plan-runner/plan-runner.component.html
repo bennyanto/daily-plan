@@ -1,134 +1,43 @@
-<!-- <<mat-accordion class="daily-plan-runner-container">
+<!-- <main class="d-flex">
+    <mat-list>
+        <mat-list-item>
+            Pepper
+            <mat-checkbox></mat-checkbox>
+        </mat-list-item>
+        <mat-list-item> Salt
+            <mat-checkbox></mat-checkbox>
+        </mat-list-item>
+        <mat-list-item> Paprika
+            <mat-checkbox></mat-checkbox>
+        </mat-list-item>
+    </mat-list>
+</main> -->
+<div class="d-flex container">
+    <div class="container-plan d-flex mat-elevation-z6">
 
-
-
-    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-
-        <mat-expansion-panel-header>
-
-
-
-            <mat-panel-title>
-                <mat-icon class="date_range">
-                    date_range
-                </mat-icon>
-                Date
-            </mat-panel-title>
-
-
-            <mat-panel-description>
-                Description
-                <mat-icon>
-                    delete_forever
-                </mat-icon>
-                <mat-icon>
-                    edit
-                </mat-icon>
-            </mat-panel-description>
-
-        </mat-expansion-panel-header>
-
-
-
-        <p>I'm visible because I am open</p>
-
-        <mat-action-row>
-            <button mat-button color="warn" (click)="prevStep()">
-                Previous
-            </button>
-            <button mat-button color="primary" (click)="nextStep()">
-                Next
-            </button>
-        </mat-action-row>
-
-    </mat-expansion-panel>
-
-
-
-    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
-
-        <mat-expansion-panel-header>
-
-
-
-            <mat-panel-title>
-                <mat-icon class="date_range">
-                    date_range
-                </mat-icon>
-                Date
-            </mat-panel-title>
-
-
-
-            <mat-panel-description>
-                Description_2
-                <mat-icon>
-                    delete_forever
-                </mat-icon>
-                <mat-icon>
-                    edit
-                </mat-icon>
-            </mat-panel-description>
-
-        </mat-expansion-panel-header>
-
-
-
-        <p>I'm visible because I am open</p>
-
-        <mat-action-row>
-            <button mat-button color="warn" (click)="prevStep()">
-                Previous
-            </button>
-            <button mat-button color="primary" (click)="nextStep()">
-                Next
-            </button>
-        </mat-action-row>
-
-    </mat-expansion-panel>
-
-
-
-    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-
-        <mat-expansion-panel-header>
-
-
-
-            <mat-panel-title>
-                <mat-icon class="date_range">
-                    date_range
-                </mat-icon>
-                Date_3
-            </mat-panel-title>
-
-
-
-            <mat-panel-description>
-                Description_3
-                <mat-icon>
-                    delete_forever
-                </mat-icon>
-                <mat-icon>
-                    edit
-                </mat-icon>
-            </mat-panel-description>
-
-        </mat-expansion-panel-header>
-
-
-
-        <p>I'm visible because I am open</p>
-
-        <mat-action-row>
-            <button mat-button color="warn" (click)="prevStep()">
-                Previous
-            </button>
-            <button mat-button color='primary' (click)="nextStep()">
-                Next
-            </button>
-        </mat-action-row>
-
-    </mat-expansion-panel>
-
-</mat-accordion> -->
+        <mat-toolbar class="d-flex">
+            <!-- <mat-toolbar-row class="justify-content-center">
+            {{plan.title}}
+        </mat-toolbar-row> -->
+            <mat-toolbar-row class="justify-content-center">
+                <button mat-mini-fab aria-label="Avvio/Pausa" (click)="togglePlayStop()">
+                    <mat-icon *ngIf="!isRunning">play_arrow</mat-icon>
+                    <mat-icon *ngIf="isRunning">pause</mat-icon>
+                </button>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-list class="d-flex">
+            <mat-list-item class="d-flex">
+                Pepper
+                <mat-checkbox></mat-checkbox>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item> Salt
+                <mat-checkbox></mat-checkbox>
+            </mat-list-item>
+            <mat-list-item> Paprika
+                <mat-checkbox></mat-checkbox>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</div>
