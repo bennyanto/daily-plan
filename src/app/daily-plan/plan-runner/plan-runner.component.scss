@@ -41,6 +41,20 @@
             flex-direction: column;
             width: 100%;
             justify-content: center;
+            align-content: center;
+            .wrap{
+                display: flex;
+                justify-content: space-between;
+                .wrappino{
+                //    position: relative;
+                //    top: 10px;
+                display: flex;
+                flex-direction: column;
+                margin-right: 50px;
+                position: relative;
+                top: 12px;
+                }
+            }
         }
     }
 }

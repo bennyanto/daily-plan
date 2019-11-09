@@ -5,10 +5,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
+
 @Component({
     selector: 'app-plan-runner',
     templateUrl: './plan-runner.component.html',
-    styleUrls: ['./plan-runner.component.scss']
+    styleUrls: ['./plan-runner.component.scss'],
 })
 export class PlanRunnerComponent implements OnInit {
     isRunning: boolean;
@@ -30,10 +31,12 @@ export class PlanRunnerComponent implements OnInit {
                 .getPlan(params.id) // prendiamo piano dal db e guarda html con for per mostrare plan
                 .then(plan => {
                     this.plan = plan;
+                    console.log(this.plan);
+
                 })
                 .catch(error => {
                     console.log(error);
-                    this.snackbar.open('erorr nel car dei dati', 'eroor', {
+                    this.snackbar.open('Errore nel caricamento dei dati', 'Error', {
                         duration: 2000
                     });
                 });

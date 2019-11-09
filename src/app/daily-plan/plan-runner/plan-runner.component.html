@@ -14,30 +14,30 @@
 </main> -->
 <div class="d-flex container">
     <div class="container-plan d-flex mat-elevation-z6">
+        <ng-template [ngIf]="plan">
+            <mat-toolbar class="d-flex">
+                <mat-toolbar-row class="justify-content-center">
+                    <button mat-mini-fab aria-label="Avvio/Pausa" (click)="togglePlayStop()">
+                        <mat-icon *ngIf="!isRunning">play_arrow</mat-icon>
+                        <mat-icon *ngIf="isRunning">pause</mat-icon>
+                    </button>
+                </mat-toolbar-row>
+            </mat-toolbar>
 
-        <mat-toolbar class="d-flex">
-            <!-- <mat-toolbar-row class="justify-content-center">
-            {{plan.title}}
-        </mat-toolbar-row> -->
-            <mat-toolbar-row class="justify-content-center">
-                <button mat-mini-fab aria-label="Avvio/Pausa" (click)="togglePlayStop()">
-                    <mat-icon *ngIf="!isRunning">play_arrow</mat-icon>
-                    <mat-icon *ngIf="isRunning">pause</mat-icon>
-                </button>
-            </mat-toolbar-row>
-        </mat-toolbar>
-        <mat-list class="d-flex">
-            <mat-list-item>
-                    <mat-checkbox></mat-checkbox>
-                    Pepper dsfsdeffffffffffffffffffffffffffffffffffffffffdddddddddd
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item> Salt
-                <mat-checkbox></mat-checkbox>
-            </mat-list-item>
-            <mat-list-item> Paprika
-                <mat-checkbox></mat-checkbox>
-            </mat-list-item>
-        </mat-list>
+            <mat-list class="d-flex" *ngFor="let task of plan.tasks">
+                <div class="wrap">
+                    <mat-list-item>
+                        {{ task.title }}
+                    </mat-list-item>
+                    <div class="wrappino">
+                        <p>{{task.tempotrascorso}}</p>
+                    </div>
+                    <div class="wrappino">
+                        <mat-checkbox></mat-checkbox>
+                    </div>
+                </div>
+            </mat-list>
+
+        </ng-template>
     </div>
 </div>
