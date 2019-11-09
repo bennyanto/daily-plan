@@ -21,6 +21,89 @@ import {
     styleUrls: ['./plan-edit.component.scss']
 })
 export class PlanEditComponent implements OnInit, OnDestroy {
+
+  private routeSub: Subscription;
+  form: FormGroup;
+
+  currentDate = new FormControl(new Date());
+  serializedDate = new FormControl((new Date()).toISOString());
+  private plan: Plan = new Plan('piano1');
+
+  currentDate = new Date(); // odierna
+  private plan: Plan = new Plan();
+
+
+
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private snackbar: MatSnackBar,
+    private db: PouchdbService
+  ) { }
+
+
+  ngOnInit() {
+    this.init();
+  }
+  ngOnDestroy(): void { // quando viene cancellato cancelliamo la sottoscrizione e non siamo + in ascolto
+    this.routeSub.unsubscribe();
+  }
+
+  init() {
+
+    console.log(this.plan);
+  }
+
+  addTask() {
+    this.tasks.push(this.buildGroup());
+  }
+
+  fetchData() {
+
+  }
+  createForm(plan: Plan) {
+    const tasks = plan.tasks.map(task => this.buildGroup(task));
+  }
+
+  buildGroup(task: Task = new Task()) {
+    return this.formBuilder.group({
+      title: [task.title || null, Validators.required],
+      isDone: [task.isDone || false],
+      tempotrascorso: [task.tempotrascorso || 0]
+    });
+  }
+
+  // manca comment
+  createForm(plan: Plan) {
+    const tasks = plan.tasks.map(task => this.buildGroup(task));
+    this.form = this.formBuilder.group({ //crea form //crea gruppo con qst prorp
+      _id: this.trueID, // genra id al giorno di oggi
+      _rev: [plan._rev],
+      tasks: this.formBuilder.array(tasks) // tuttitasks
+
+    });
+  }
+  get tasks() {
+    return this.form.get('tasks') as FormArray;
+  }
+  addTask() {
+    this.tasks.push(this.buildGroup());
+  }
+
+
+
+  insertTask(index: number) {
+    this.tasks.insert(index, this.buildGroup());
+  }
+  removeTask(index: number) {
+    this.tasks.removeAt(index);
+  }
+  submitForm() {
+    if (!this.form.valid) {
+      return;
+
     private routeSub: Subscription;
     form: FormGroup;
     currentDate = this.setDate(new Date()); // odierna
@@ -50,6 +133,7 @@ export class PlanEditComponent implements OnInit, OnDestroy {
         const dataValue = date.toString().substring(0, 15);
         const data = new Date(dataValue).getTime();
         return data;
+
     }
 
     init() {
