@@ -1,0 +1,14 @@
+.daily-plan-edit-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    div.date-wrapper mat-form-field{
+        width: 150px;
+
+    }
+    mat-form-field {
+        width: 700px;
+    }
+}

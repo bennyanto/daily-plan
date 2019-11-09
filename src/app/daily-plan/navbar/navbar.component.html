@@ -1,23 +1,13 @@
 <mat-toolbar color="primary" class="d-flex mat-elevation-z6">
     <mat-toolbar-row class="justify-content-between">
-          <span>Daily Plan</span>
-          <span class="example-spacer"></span>
-          <div>
-          <button mat-button="Home" routerLink="/plan" routerLinkActive="router-link-active">
-            Home
-          </button>
-          <button mat-button="aboveMenu" routerLink="/plan/:id" routerLinkActive="router-link-active">
-            Esegui
-          </button>
-          <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">
-            delete
-          </mat-icon>
-          <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">
-            date_range
-          </mat-icon>
-          <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">
-              account_circle
+        <span>
+            Daily Plan
+        </span>
+        <button class="navbar-icon" mat-icon-button aria-hidden="false" aria-label="Home" routerLink="/plan"
+            routerLinkActive="router-link-active">
+            <mat-icon>
+                home
             </mat-icon>
-          </div>
-      </mat-toolbar-row>
-  </mat-toolbar>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>

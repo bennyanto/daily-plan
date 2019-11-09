@@ -1,3 +1,5 @@
+import { Plan } from './models/plan';
+import { MatSnackBar } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DailyPlanComponent implements OnInit {
 
+  plans: Plan[];
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
