@@ -1,19 +1,39 @@
-.calendar-wrapper {
-  width: 50%;
-  margin: auto;
-  margin-bottom: 75px;
+div.wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+mat-expansion-panel {
+
+  width: 540px;
+  margin-top: 15px;
+
+  .example-spacer {
+    flex: 1 1 auto;
+
+  }
+
 }
 
 .example-icon {
   padding: 0 14px;
 }
 
-.example-spacer {
-  flex: 1 1 auto;
-}
+
 
 .add-activity-button {
   position: fixed;
   bottom: 5%;
   right: 2%;
+}
+
+.calendar-wrapper {
+  width: 50%;
+  margin: auto;
+  margin: 10px 0 75px 0;
+  // mat-calendar {
+  //   background-color: grey;
+  // }
 }

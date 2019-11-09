@@ -1,8 +1,11 @@
 .daily-plan-edit-container {
-  display: flex;
-  flex-direction: column;
-}
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-.daily-plan-edit-container > * {
-  width: 100%;
+    mat-form-field{
+        width: 150px;
+
+    }
 }

@@ -1,10 +1,9 @@
-import { Task } from './task';
+import { Task } from "./task";
 export class Plan {
-  _id: string; // riferito all id del db
-  _rev: string; // serve per contrllo couch db
+    _id: string; // riferito all id del db
+    _rev: string; // serve per contrllo couch db
 
-  constructor(
-
-    public tasks: Task[] = [new Task()] // array di tasks
-  ) {}
+    constructor(
+        public tasks: Task[] = [new Task()] // array di tasks
+    ) {}
 }

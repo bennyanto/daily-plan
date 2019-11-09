@@ -1,28 +1,41 @@
 import { Plan } from './../models/plan';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatCalendar } from '@angular/material';
 import { PouchdbService } from './../services/pouchdb.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-plan-list',
-  templateUrl: './plan-list.component.html',
-  styleUrls: ['./plan-list.component.scss']
+    selector: 'app-plan-list',
+    templateUrl: './plan-list.component.html',
+    styleUrls: ['./plan-list.component.scss']
 })
 export class PlanListComponent implements OnInit {
-  plans: Plan[];
-  constructor(private db: PouchdbService, private snackbar: MatSnackBar) { }
+    plan: Plan;
+    selectedDate;
+    currentDateString = `${this.setDate(new Date())}`;
+    @ViewChild('calendar', null) calendar: MatCalendar<Date>;
 
-  ngOnInit() {
+    constructor(private db: PouchdbService, private snackbar: MatSnackBar) {}
 
-    // this.db.setPlan(new Plan());
+    ngOnInit() {
+        this.db
+            .getPlan(this.currentDateString)
+            .then(plan => {
+                this.plan = plan;
+                console.log(this.plan);
+            })
+            .catch(error => {
+                console.log(error);
+                this.snackbar.open(
+                    'Errore nel caricamento dal dataBase',
+                    'Errore',
+                    { duration: 2000 }
+                );
+            });
+    }
 
-    this.db.fetchPlans().then(plans => {
-      this.plans = plans;
-    }).catch(error => {
-      console.log(error);
-      this.snackbar.open("Errore nel caricamento dal dataBase", "Errore", {duration: 2000})
-
-    })
-  }
-
+    setDate(date) {
+        const dataValue = date.toString().substring(0, 15);
+        const data = new Date(dataValue).getTime();
+        return data;
+    }
 }
