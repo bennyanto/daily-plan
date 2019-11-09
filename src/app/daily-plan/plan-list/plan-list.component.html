@@ -1,7 +1,7 @@
 <!-- mat-menu -->
 <div class="wrapper">
-    <mat-accordion class="mt-3">
-        <ng-template [ngIf]="plan._id == currentDateString">
+    <ng-template [ngIf]="plan._id == currentDateString">
+        <mat-accordion class="mt-3">
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="example-spacer">
                     <mat-panel-title> Programma di Oggi</mat-panel-title>
@@ -30,15 +30,15 @@
                     <mat-divider></mat-divider>
                 </p>
             </mat-expansion-panel>
-        </ng-template>
-    </mat-accordion>
+        </mat-accordion>
+    </ng-template>
     <!-- calendar-wrapper -->
     <div class="calendar-wrapper">
         <mat-calendar #calendar [(selected)]="selectedDate"></mat-calendar>
     </div>
     <!-- mat-icon-add -->
-    <button type="button" class="add-activity-button" mat-fab aria-label="Aggiungi un'attivitÃ "
-        matTooltip="Aggiungi un'attivitÃ " color="primary" routerLink="/plan/edit/0">
+    <button type="button" class="add-activity-button" mat-fab aria-label="Aggiungi un'attività "
+        matTooltip="Aggiungi un'attività " color="accent" routerLink="/plan/edit/0">
         <mat-icon>
             add
         </mat-icon>
