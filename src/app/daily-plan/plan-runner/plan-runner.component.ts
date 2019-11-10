@@ -6,18 +6,21 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 
+
+
 @Component({
     selector: 'app-plan-runner',
     templateUrl: './plan-runner.component.html',
     styleUrls: ['./plan-runner.component.scss'],
 })
 export class PlanRunnerComponent implements OnInit {
+    private routeSub: Subscription;
     isRunning: boolean;
     currentTaskIndex = 0; // indice del task partito dal tasto play
     intervalID; // ogni secondo incrementa il tempo (tempotrascorso ) di 1
     plan: Plan;
     checked = false;
-    private routeSub: Subscription;
+
 
     constructor(
         private route: ActivatedRoute,
@@ -33,6 +36,7 @@ export class PlanRunnerComponent implements OnInit {
                     this.plan = plan;
                     console.log(this.plan);
 
+                    this.init();
                 })
                 .catch(error => {
                     console.log(error);
@@ -42,16 +46,25 @@ export class PlanRunnerComponent implements OnInit {
                 });
         });
     }
-    //init() {
-    // this.intervalID = null;
-    // }
+
+    init() {
+        this.currentTaskIndex = 0;
+        this.isRunning = false;
+        this.plan.tasks.forEach(task => {
+
+            task.tempotrascorso = 0;
+            task.isDone = false;
+            task.isEnabled = true;
+
+        });
+    }
 
     ngOnDestroy() {
         this.routeSub.unsubscribe();
     }
 
     runTask() {
-        const task = this.plan.tasks[this.currentTaskIndex]; //currentTaskIndex è a 0
+        const task = this.plan.tasks[this.currentTaskIndex]; // currentTaskIndex è a 0
         this.intervalID = setInterval(() => {
             task.tempotrascorso++;
             console.log(task.tempotrascorso);
@@ -60,6 +73,7 @@ export class PlanRunnerComponent implements OnInit {
 
     play() {
         this.runTask();
+        this.checked = false;
         this.isRunning = true;
     }
 
@@ -70,6 +84,7 @@ export class PlanRunnerComponent implements OnInit {
 
     stop() {
         this.pause();
+        this.checked = false;
     }
     // ccione iniziale per iniziare
     togglePlayStop() {
@@ -82,12 +97,31 @@ export class PlanRunnerComponent implements OnInit {
     }
 
     check() {
+        console.log("this.checked", this.checked);
         const task = this.plan.tasks[this.currentTaskIndex];
-        if (this.checked) {
+
+
+        if(!this.checked) {
+            this.checked = true;
+            task.isEnabled = false;
+        } else if (this.checked) {
+            this.snackbar.open('hai già finito questo task!');
+        }
+
+        if (this.checked && this.isRunning) {
             // checked prop [ng module], quando check il checked va a true con bana
+            this.stop();
             task.isDone = true;
             this.currentTaskIndex++;
-            this.runTask();
+            if (this.currentTaskIndex < this.plan.tasks.length) {
+                this.play();
+
+            } else {
+
+                this.snackbar.open("Hai finito il programma!", null, {duration: 2000});
+                console.log(this);
+
+            }
         }
     }
 }

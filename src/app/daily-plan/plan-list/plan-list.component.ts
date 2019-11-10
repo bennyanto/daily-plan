@@ -21,17 +21,10 @@ export class PlanListComponent implements OnInit {
             .getPlan(this.currentDateString)
             .then(plan => {
                 this.plan = plan;
-                console.log(this.plan);
+                // console.log(this.plan);
             })
-            .catch(error => {
-                console.log(error);
-                this.snackbar.open(
-                    'Errore nel caricamento dal dataBase',
-                    'Errore',
-                    { duration: 2000 }
-                );
-            });
     }
+
 
     setDate(date) {
         const dataValue = date.toString().substring(0, 15);

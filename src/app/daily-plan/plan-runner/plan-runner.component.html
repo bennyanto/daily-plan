@@ -24,19 +24,23 @@
                 </mat-toolbar-row>
             </mat-toolbar>
 
-            <mat-list class="d-flex" *ngFor="let task of plan.tasks">
+            <mat-list class="d-flex" *ngFor="let task of plan.tasks" [ngClass]="{ disabled: !task.isEnabled }">
                 <div class="wrap">
                     <mat-list-item>
                         {{ task.title }}
                     </mat-list-item>
                     <div class="wrappino">
-                        <p>{{task.tempotrascorso}}</p>
+                        <p>{{task.tempotrascorso | numberToTime}}</p>
                     </div>
                     <div class="wrappino">
-                        <mat-checkbox></mat-checkbox>
+                        <ng-template [ngIf]="task.isEnabled">
+                            <mat-checkbox (click)="this.check()"></mat-checkbox>
+                        </ng-template>
                     </div>
                 </div>
+                <mat-divider></mat-divider>
             </mat-list>
+
 
         </ng-template>
     </div>

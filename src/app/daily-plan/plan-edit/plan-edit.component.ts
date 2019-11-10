@@ -87,6 +87,7 @@ export class PlanEditComponent implements OnInit, OnDestroy {
         return this.formBuilder.group({
             title: [task.title || null, Validators.required],
             isDone: [task.isDone || false],
+            isEnabled: [task.isDone || false],
             tempotrascorso: [task.tempotrascorso || 0]
         });
     }

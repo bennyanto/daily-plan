@@ -22,8 +22,10 @@ import {
     MatNativeDateModule,
     MatMenuModule,
 } from '@angular/material';
-import { MatCheckboxModule} from '@angular/material/checkbox'
+import { MatCheckboxModule} from '@angular/material/checkbox';
 import { PlanListComponent } from './plan-list/plan-list.component';
+import { NumberToTimePipe } from './pipes/number-to-time.pipe';
+
 
 @NgModule({
     declarations: [
@@ -32,7 +34,8 @@ import { PlanListComponent } from './plan-list/plan-list.component';
         FooterComponent,
         NavbarComponent,
         DailyPlanComponent,
-        PlanListComponent
+        PlanListComponent,
+        NumberToTimePipe
     ],
     imports: [
         CommonModule,
@@ -51,8 +54,7 @@ import { PlanListComponent } from './plan-list/plan-list.component';
         MatFormFieldModule,
         MatNativeDateModule,
         MatMenuModule,
-        MatCheckboxModule,
-        NgModule
+        MatCheckboxModule
     ],
     exports: [DailyPlanComponent]
 })
