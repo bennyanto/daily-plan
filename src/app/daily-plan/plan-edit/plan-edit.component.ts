@@ -23,7 +23,7 @@ import {
 export class PlanEditComponent implements OnInit, OnDestroy {
     private routeSub: Subscription;
     form: FormGroup;
-    currentDate = this.setDate(new Date("2019-11-10")); // odierna
+    currentDate = this.setDate(new Date()); // odierna
 
     date = new FormControl(new Date());
     serializedDate = new FormControl(new Date().toISOString());
@@ -99,6 +99,7 @@ export class PlanEditComponent implements OnInit, OnDestroy {
     }
     // manca comment
     createForm(plan: Plan) {
+        console.log(plan);
         const id = this.trueID;
         const tasks = plan.tasks.map(task => this.buildGroup(task));
         this.form = this.formBuilder.group({

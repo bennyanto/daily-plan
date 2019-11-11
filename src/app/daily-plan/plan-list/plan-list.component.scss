@@ -1,43 +1,32 @@
-div.wrapper{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-mat-expansion-panel {
-
-  width: 540px;
-  margin-top: 15px;
-
-  .example-spacer {
-    flex: 1 1 auto;
-
-  }
-
-}
-
-.example-icon {
-  padding: 0 14px;
-}
-
-
-
 .add-activity-button {
-  position: fixed;
-  bottom: 5%;
-  right: 2%;
+    position: fixed;
+    right: 2%;
+    bottom: 5%;
+}
+
+div.wrapper {
+    align-items: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.gray800 {
+    color: #424242;
 }
 
 .calendar-wrapper {
-  width: 50%;
-  margin: auto;
-  margin: 10px 0 75px 0;
-  // mat-calendar {
-  //   background-color: grey;
-  // }
+    width: 1024px;
+    margin: auto;
+    margin: 10px 0 75px 0;
+    font-style: italic;
 }
 
-.disabled {
-    background-color: rgb(68, 209, 68)
+.alert {
+    width: 1024px;
+    font-size: small;
+}
+
+.alert.alert-dark {
+    margin-top: 75px;
 }
