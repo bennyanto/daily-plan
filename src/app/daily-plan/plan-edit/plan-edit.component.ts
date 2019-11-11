@@ -23,12 +23,12 @@ import {
 export class PlanEditComponent implements OnInit, OnDestroy {
     private routeSub: Subscription;
     form: FormGroup;
-    currentDate = this.setDate(new Date()); // odierna
+    currentDate = this.setDate(new Date("2019-11-10")); // odierna
 
     date = new FormControl(new Date());
     serializedDate = new FormControl(new Date().toISOString());
 
-    compareDate = this.setDate(this.date.value);
+    compareDate;
     trueID: string = `${this.compareDate}`; // id del piano gironalieor
 
     constructor(
@@ -37,7 +37,7 @@ export class PlanEditComponent implements OnInit, OnDestroy {
         private formBuilder: FormBuilder,
         private snackbar: MatSnackBar,
         private db: PouchdbService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.init();
@@ -47,6 +47,7 @@ export class PlanEditComponent implements OnInit, OnDestroy {
         this.routeSub.unsubscribe();
     }
     setDate(date) {
+        console.log("setDate", date);
         const dataValue = date.toString().substring(0, 15);
         const data = new Date(dataValue).getTime();
         return data;
@@ -57,6 +58,9 @@ export class PlanEditComponent implements OnInit, OnDestroy {
             // comm
             this.routeSub.unsubscribe();
         }
+        // console.log("data picker orig", this.date.value);
+        // console.log("current date", this.currentDate);
+
         this.routeSub = this.route.params.subscribe((params: Params) => {
             console.log('params.id', params.id);
 
@@ -101,12 +105,22 @@ export class PlanEditComponent implements OnInit, OnDestroy {
             // crea form //crea gruppo con qst prorp
             _id: id, // genra id al giorno di oggi
             _rev: [plan._rev],
+            hasFinished: [plan.hasFinished || false],
             tasks: this.formBuilder.array(tasks) // tuttitasks
         });
     }
     get tasks() {
         return this.form.get('tasks') as FormArray;
     }
+    set rauId(date: string) {
+        console.log("date", date);
+        this.compareDate = this.setDate(new Date(date));
+        this.trueID = `${this.compareDate}`;
+        this.createForm(new Plan());
+
+    }
+
+
     addTask() {
         this.tasks.push(this.buildGroup());
     }
@@ -118,8 +132,11 @@ export class PlanEditComponent implements OnInit, OnDestroy {
         this.tasks.removeAt(index);
     }
     submitForm() {
+        this.currentDate = this.setDate(this.date.value);
+        // this.trueID = `${this.compareDate}`;
         console.log('submit ', this.compareDate);
-        console.log('submit ',this.currentDate);
+        console.log("datepicker", this.date.value);
+        console.log('submit ', this.currentDate);
         if (!this.form.valid) {
             return;
         }

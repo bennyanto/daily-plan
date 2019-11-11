@@ -23,11 +23,12 @@ export class PlanRunnerComponent implements OnInit {
     disabled = false; // prpp checkbox
 
 
+
     constructor(
         private route: ActivatedRoute,
         private db: PouchdbService,
         private snackbar: MatSnackBar
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params: Params) => {
@@ -91,8 +92,8 @@ export class PlanRunnerComponent implements OnInit {
     }
     // ccione iniziale per iniziare
     togglePlayStop() {
-     const task = this.plan.tasks[this.currentTaskIndex];
-     if (this.isRunning) {
+        const task = this.plan.tasks[this.currentTaskIndex];
+        if (this.isRunning) {
             // se è gia partito / pausa
             this.pause();
             task.isCheckEnable = false;
@@ -111,7 +112,7 @@ export class PlanRunnerComponent implements OnInit {
         const task = this.plan.tasks[this.currentTaskIndex];
 
 
-        if(!this.checked) {
+        if (!this.checked) {
             this.checked = true;
             task.isEnabled = false;
         } else if (this.checked) {
@@ -129,10 +130,12 @@ export class PlanRunnerComponent implements OnInit {
                 this.play();
 
             } else {
-
-                this.snackbar.open("Hai finito il programma!", null, {duration: 2000});
-                this.disabled = true;
-                console.log(this);
+                setTimeout(() => {
+                    this.snackbar.open("Hai finito il programma!", null, { duration: 2000 });
+                    this.disabled = true;
+                    this.plan.hasFinished = true;
+                    console.log(this);
+                }, 500);
 
             }
         }

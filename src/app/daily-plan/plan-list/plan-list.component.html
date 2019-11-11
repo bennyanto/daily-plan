@@ -2,7 +2,7 @@
 <div class="wrapper">
     <ng-template [ngIf]="plan">
         <ng-template [ngIf]="plan._id == currentDateString">
-            <mat-accordion class="mt-3">
+            <mat-accordion class="mt-3" [ngClass]="{green: plan.hasFinished }">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header class="example-spacer">
                         <mat-panel-title> Programma di Oggi</mat-panel-title>
@@ -20,7 +20,9 @@
                                 create
                             </mat-icon>
                         </button>
-                        <button mat-icon-button aria-label="Elimina attività " matTooltip="Elimina attività ">
+                        <button class="mr-3" mat-icon-button aria-label="Elimina attività " matTooltip="Elimina attività" 
+                         (click)="eliminaPiano()">
+
                             <mat-icon>
                                 delete_forever
                             </mat-icon>
