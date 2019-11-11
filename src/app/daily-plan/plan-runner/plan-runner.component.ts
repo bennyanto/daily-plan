@@ -20,6 +20,7 @@ export class PlanRunnerComponent implements OnInit {
     intervalID; // ogni secondo incrementa il tempo (tempotrascorso ) di 1
     plan: Plan;
     checked = false;
+    disabled = false; // prpp checkbox
 
 
     constructor(
@@ -67,6 +68,8 @@ export class PlanRunnerComponent implements OnInit {
         const task = this.plan.tasks[this.currentTaskIndex]; // currentTaskIndex è a 0
         this.intervalID = setInterval(() => {
             task.tempotrascorso++;
+            task.isCheckEnable = true;
+
             console.log(task.tempotrascorso);
         }, 1000);
     }
@@ -88,11 +91,18 @@ export class PlanRunnerComponent implements OnInit {
     }
     // ccione iniziale per iniziare
     togglePlayStop() {
-        if (this.isRunning) {
+     const task = this.plan.tasks[this.currentTaskIndex];
+     if (this.isRunning) {
             // se è gia partito / pausa
             this.pause();
+            task.isCheckEnable = false;
+
+
         } else {
             this.play();
+            task.isCheckEnable = true;
+
+
         }
     }
 
@@ -110,8 +120,10 @@ export class PlanRunnerComponent implements OnInit {
 
         if (this.checked && this.isRunning) {
             // checked prop [ng module], quando check il checked va a true con bana
+            task.isEnabled = false;
             this.stop();
             task.isDone = true;
+
             this.currentTaskIndex++;
             if (this.currentTaskIndex < this.plan.tasks.length) {
                 this.play();
@@ -119,6 +131,7 @@ export class PlanRunnerComponent implements OnInit {
             } else {
 
                 this.snackbar.open("Hai finito il programma!", null, {duration: 2000});
+                this.disabled = true;
                 console.log(this);
 
             }

@@ -7,7 +7,7 @@ import { PlanRunnerComponent } from './plan-runner/plan-runner.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {
     MatToolbarModule,
@@ -54,7 +54,8 @@ import { NumberToTimePipe } from './pipes/number-to-time.pipe';
         MatFormFieldModule,
         MatNativeDateModule,
         MatMenuModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        FormsModule
     ],
     exports: [DailyPlanComponent]
 })

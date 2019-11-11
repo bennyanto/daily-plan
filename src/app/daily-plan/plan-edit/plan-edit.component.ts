@@ -88,7 +88,9 @@ export class PlanEditComponent implements OnInit, OnDestroy {
             title: [task.title || null, Validators.required],
             isDone: [task.isDone || false],
             isEnabled: [task.isDone || false],
-            tempotrascorso: [task.tempotrascorso || 0]
+            tempotrascorso: [task.tempotrascorso || 0],
+            isCheckEnable: [task.isDone || false]
+
         });
     }
     // manca comment
