@@ -5,7 +5,7 @@
                             <!-- alert -->
             <div class="alert alert-dark" role="alert">
                     <div class="float-left" style="margin-top: 10px;">
-                        A simple success alertâ€”check it out!
+                        piano giornaliero
                     </div>
                     <div class="float-right">
                         <!-- mat-icon play_circle_outline -->
@@ -35,13 +35,21 @@
     <div class="calendar-wrapper">
         <mat-calendar #calendar [(selected)]="selectedDate" (click)="clicked()"></mat-calendar>
     </div>
+
+    <!-- <mat-list-item *ngFor= " let task of plan.tasks">
+            {{task.title}}
+    </mat-list-item>
+    <mat-list-item *ngFor= " let task of plan2.tasks">
+             {{task.title}}
+    </mat-list-item> -->
+
     <ng-template [ngIf]="plan" >
         <p>{{plan.tasks}}</p>
     </ng-template>
     <ng-template [ngIf]="plan2" >
         <p>{{plan2.tasks}}</p>
     </ng-template>
-    <!-- mat-icon-add -->
+    <!-- mat-icon-add
     <button type="button" class="add-activity-button" mat-fab aria-label="Aggiungi un'attività "
         matTooltip="Aggiungi un'attività " color="accent" routerLink="/plan/edit/0">
         <mat-icon>
