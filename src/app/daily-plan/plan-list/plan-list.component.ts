@@ -10,29 +10,27 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class PlanListComponent implements OnInit {
     plan: Plan;
-    selectedDate;
-    currentDateString = `${this.setDate(new Date("2019-11-12"))}`;
+    plan2: Plan;
+    selectedDate = new Date();
+    currentDateString = `${this.setDate(new Date())}`;
+    compareDate;
     @ViewChild('calendar', null) calendar: MatCalendar<Date>;
 
-    constructor(private db: PouchdbService, private snackbar: MatSnackBar) {}
+    constructor(private db: PouchdbService, private snackbar: MatSnackBar) { }
 
     ngOnInit() {
-       this.init();
+        this.init();
     }
-    init(){
-
-       // this.db.setPlan(new Plan());
-        console.log(this.selectedDate);
-
+    init() {
+        //console.log("selectdate",this.selectedDate);
 
         this.db
             .getPlan(this.currentDateString)
-
             .then(plan => {
                 this.plan = plan;
                 // console.log(this.plan);
             }).catch((error) => {
-                this.plan= null;
+                this.plan = null;
             })
     }
 
@@ -40,6 +38,23 @@ export class PlanListComponent implements OnInit {
         const dataValue = date.toString().substring(0, 15);
         const data = new Date(dataValue).getTime();
         return data;
+    }
+
+
+    clicked() {
+        let tmp = this.setDate(this.selectedDate).toString();
+        this.compareDate = tmp;
+        this.fetchPlanDate();
+        console.log("tmp",tmp);
+        return;
+    }
+    fetchPlanDate() {
+        this.db
+        .getPlan(this.compareDate)
+        .then(plan => {
+            this.plan2 = plan;
+
+        });
     }
 
     eliminaPiano() {

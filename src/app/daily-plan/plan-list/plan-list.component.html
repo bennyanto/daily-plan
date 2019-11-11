@@ -38,8 +38,14 @@
     </ng-template>
     <!-- calendar-wrapper -->
     <div class="calendar-wrapper">
-        <mat-calendar #calendar [(selected)]="selectedDate"></mat-calendar>
+        <mat-calendar #calendar [(selected)]="selectedDate" (click)="clicked()"></mat-calendar>
     </div>
+    <ng-template [ngIf]="plan" >
+        <p>{{plan.tasks}}</p>
+    </ng-template>
+    <ng-template [ngIf]="plan2" >
+        <p>{{plan2.tasks}}</p>
+    </ng-template>
     <!-- mat-icon-add -->
     <button type="button" class="add-activity-button" mat-fab aria-label="Aggiungi un'attività "
         matTooltip="Aggiungi un'attività " color="accent" routerLink="/plan/edit/0">

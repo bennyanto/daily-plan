@@ -112,7 +112,7 @@ export class PlanEditComponent implements OnInit, OnDestroy {
     get tasks() {
         return this.form.get('tasks') as FormArray;
     }
-    set rauId(date: string) {
+    set rawId(date: string) {
         console.log("date", date);
         this.compareDate = this.setDate(new Date(date));
         this.trueID = `${this.compareDate}`;
